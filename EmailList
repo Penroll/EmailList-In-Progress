@@ -1,0 +1,64 @@
+//Declaring the names themselves
+        public static string Person1 = "Hardy MiddleName Lewis 2018";
+        public static string Person2 = "Seamus Reynolds Grealey 2018";
+        public static string Person3 = "Kevin Skylar Barnes 2018";
+        
+        //Declaring the arrays that hold all of the personal information
+        public static string[] Person1Array = new string[7];
+        public static string[] Person2Array = new string[7];
+        public static string[] Person3Array = new string[7];
+
+        //Declares variables for finding the middle and last names
+        public static string SecondaryStringP1;
+        public static string SecondaryStringP2;
+        public static string SecondaryStringP3;
+
+        //Declaring integers that find the lengths of the names and the spaces in between
+        public static int FirstSpaceIndexP1;
+        public static int LastSpaceIndexP1;
+        public static int FirstNameLengthP1;
+        public static int MiddleNameLengthP1;
+        public static int MiddleAndLastNameLengthP1;
+        public static int SecondSpaceIndexP1;
+
+        public static int FirstSpaceIndexP2;
+        public static int LastSpaceIndexP2;
+        public static int FirstNameLengthP2;
+        public static int MiddleNameLengthP2;
+        public static int MiddleAndLastNameLengthP2;
+        public static int SecondSpaceIndexP2;
+
+        public static int FirstSpaceIndexP3;
+        public static int LastSpaceIndexP3;
+        public static int FirstNameLengthP3;
+        public static int MiddleNameLengthP3;
+        public static int MiddleAndLastNameLengthP3;
+        public static int SecondSpaceIndexP3;
+        
+        public Form1()
+        {
+            InitializeComponent();
+            //Actually finds where the first space is
+            FirstSpaceIndexP1 = Person1.IndexOf(" ");
+            FirstSpaceIndexP2 = Person2.IndexOf(" ");
+            FirstSpaceIndexP3 = Person3.IndexOf(" ");
+
+            //Finds the length of the first name
+            FirstNameLengthP1 = Person1.Length - (Person1.Length - FirstSpaceIndexP1);
+            FirstNameLengthP2 = Person2.Length - (Person2.Length - FirstSpaceIndexP2);
+            FirstNameLengthP3 = Person3.Length - (Person3.Length - FirstSpaceIndexP3);
+
+            //Uses Substring to find the first names of each person
+            Person1Array[0] = Person1.Substring(0, FirstNameLengthP1);
+            Person2Array[0] = Person2.Substring(0, FirstNameLengthP2);
+            Person3Array[0] = Person3.Substring(0, FirstNameLengthP3);
+
+            //Uses math to find the middle and last name length of each person    *the +1 is to account for the space after the first name
+            MiddleAndLastNameLengthP1 = Person1.Length - (FirstNameLengthP1 + 1);
+            MiddleAndLastNameLengthP2 = Person2.Length - (FirstNameLengthP2 + 1);
+            MiddleAndLastNameLengthP3 = Person3.Length - (FirstNameLengthP3 + 1);
+           
+            //Uses substring to find the string of the person's name minus the first name
+            SecondaryStringP1 = Person1.Substring(FirstNameLengthP1, MiddleAndLastNameLengthP1 + 1);
+            SecondaryStringP2 = Person2.Substring(FirstNameLengthP2, MiddleAndLastNameLengthP2 + 1);
+            SecondaryStringP3 = Person3.Substring(FirstNameLengthP3, MiddleAndLastNameLengthP3 + 1);
