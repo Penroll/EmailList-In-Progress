@@ -1,7 +1,7 @@
 //Declaring the names themselves
-        public static string Person1 = "Hardy MiddleName Lewis 2018";
+        public static string Person1 = "Hardy J Lewis 2018";
         public static string Person2 = "Seamus Reynolds Grealey 2018";
-        public static string Person3 = "Kevin Skylar Barnes 2018";
+        public static string Person3 = "Kevin Skyler Barnes 2018";
         
         //Declaring the arrays that hold all of the personal information
         public static string[] Person1Array = new string[7];
@@ -13,6 +13,11 @@
         public static string SecondaryStringP2;
         public static string SecondaryStringP3;
 
+        //Declares variables for finding the last names and years
+        public static string TertiaryStringP1;
+        public static string TertiaryStringP2;
+        public static string TertiaryStringP3;
+
         //Declaring integers that find the lengths of the names and the spaces in between
         public static int FirstSpaceIndexP1;
         public static int LastSpaceIndexP1;
@@ -20,6 +25,9 @@
         public static int MiddleNameLengthP1;
         public static int MiddleAndLastNameLengthP1;
         public static int SecondSpaceIndexP1;
+        public static int LastNameLengthP1;
+        public static int LastNameAndYearLengthP1;
+        public static int ThirdSpaceIndexP1;
 
         public static int FirstSpaceIndexP2;
         public static int LastSpaceIndexP2;
@@ -27,6 +35,10 @@
         public static int MiddleNameLengthP2;
         public static int MiddleAndLastNameLengthP2;
         public static int SecondSpaceIndexP2;
+        public static int LastNameLengthP2;
+        public static int LastNameAndYearLengthP2;
+        public static int ThirdSpaceIndexP2;
+
 
         public static int FirstSpaceIndexP3;
         public static int LastSpaceIndexP3;
@@ -34,6 +46,9 @@
         public static int MiddleNameLengthP3;
         public static int MiddleAndLastNameLengthP3;
         public static int SecondSpaceIndexP3;
+        public static int LastNameLengthP3;
+        public static int LastNameAndYearLengthP3;
+        public static int ThirdSpaceIndexP3;
         
         public Form1()
         {
@@ -59,6 +74,51 @@
             MiddleAndLastNameLengthP3 = Person3.Length - (FirstNameLengthP3 + 1);
            
             //Uses substring to find the string of the person's name minus the first name
-            SecondaryStringP1 = Person1.Substring(FirstNameLengthP1, MiddleAndLastNameLengthP1 + 1);
-            SecondaryStringP2 = Person2.Substring(FirstNameLengthP2, MiddleAndLastNameLengthP2 + 1);
-            SecondaryStringP3 = Person3.Substring(FirstNameLengthP3, MiddleAndLastNameLengthP3 + 1);
+            SecondaryStringP1 = Person1.Substring((FirstNameLengthP1 + 1), MiddleAndLastNameLengthP1);
+            SecondaryStringP2 = Person2.Substring((FirstNameLengthP2 + 1), MiddleAndLastNameLengthP2);
+            SecondaryStringP3 = Person3.Substring((FirstNameLengthP3 + 1), MiddleAndLastNameLengthP3);
+
+            //Finds index of the space in the secondary string
+            SecondSpaceIndexP1 = SecondaryStringP1.IndexOf(" ");
+            SecondSpaceIndexP2 = SecondaryStringP2.IndexOf(" ");
+            SecondSpaceIndexP3 = SecondaryStringP3.IndexOf(" ");
+
+            //Finds length of middle name for later parsing
+            MiddleNameLengthP1 = SecondaryStringP1.Length - (SecondaryStringP1.Length - SecondSpaceIndexP1);
+            MiddleNameLengthP2 = SecondaryStringP2.Length - (SecondaryStringP2.Length - SecondSpaceIndexP2);
+            MiddleNameLengthP3 = SecondaryStringP3.Length - (SecondaryStringP3.Length - SecondSpaceIndexP3);
+
+            //Finds the middle name of the person using substring
+            Person1Array[1] = SecondaryStringP1.Substring(0, MiddleNameLengthP1);
+            Person2Array[1] = SecondaryStringP2.Substring(0, MiddleNameLengthP2);
+            Person3Array[1] = SecondaryStringP3.Substring(0, MiddleNameLengthP3);
+
+            //Finds the length of the last name and year string
+            LastNameAndYearLengthP1 = SecondaryStringP1.Length - (MiddleNameLengthP1 + 1);
+            LastNameAndYearLengthP2 = SecondaryStringP2.Length - (MiddleNameLengthP2 + 1);
+            LastNameAndYearLengthP3 = SecondaryStringP3.Length - (MiddleNameLengthP3 + 1);
+
+            //Separates the last name and year from the string containing the middle and last names
+            TertiaryStringP1 = SecondaryStringP1.Substring((MiddleNameLengthP1 + 1), LastNameAndYearLengthP1);
+            TertiaryStringP2 = SecondaryStringP2.Substring((MiddleNameLengthP2 + 1), LastNameAndYearLengthP2);
+            TertiaryStringP3 = SecondaryStringP3.Substring((MiddleNameLengthP3 + 1), LastNameAndYearLengthP3);
+
+            //Finds the space between the last name and the year
+            LastSpaceIndexP1 = TertiaryStringP1.IndexOf(" ");
+            LastSpaceIndexP2 = TertiaryStringP2.IndexOf(" ");
+            LastSpaceIndexP3 = TertiaryStringP3.IndexOf(" ");
+
+            //Finds the length of the last name in order to properly use substring
+            LastNameLengthP1 = TertiaryStringP1.Length - (TertiaryStringP1.Length - LastSpaceIndexP1);
+            LastNameLengthP2 = TertiaryStringP2.Length - (TertiaryStringP2.Length - LastSpaceIndexP2);
+            LastNameLengthP3 = TertiaryStringP3.Length - (TertiaryStringP1.Length - LastSpaceIndexP3);
+
+            //Finds the last name from the string containing the last name and the year
+            Person1Array[2] = TertiaryStringP1.Substring(0, LastNameLengthP1);
+            Person2Array[2] = TertiaryStringP2.Substring(0, LastNameLengthP2);
+            Person3Array[2] = TertiaryStringP3.Substring(0, LastNameLengthP3);
+
+            //Finds the four digit year from the string entered
+            Person1Array[3] = TertiaryStringP1.Substring(LastNameLengthP1 + 1, 4);
+            Person2Array[3] = TertiaryStringP2.Substring(LastNameLengthP2 + 1, 4);
+            Person3Array[3] = TertiaryStringP3.Substring(LastNameLengthP3 + 1, 4);
