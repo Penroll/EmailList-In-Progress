@@ -1,0 +1,32 @@
+//Global Variables
+        int[] Default = new int[19];
+        int[] Output = new int[19];
+        int Input;
+        
+        
+//In the Initialize Component Event
+//Populates default array
+Random rnd = new Random();
+            for (int i = 0; i < 19; i++)
+            {
+                Default[i] = rnd.Next(1, 101);
+            }
+           
+            for (int i = 0; i < 19; i++)
+            {
+                lstDefault.Items.Add(Default[i].ToString() + Environment.NewLine);
+            }
+            
+ 
+//In each button click event, replace the + with either a -, *, /, or % for modulus
+
+ lstOutput.Items.Clear();
+            Input = Convert.ToInt32(txtInteger.Text);
+            for (int i = 0; i < 19; i++)
+            {
+                Output[i] = Default[i] + Input;
+            }
+            for (int i = 0; i < 19; i++)
+            {
+                lstOutput.Items.Add(Output[i].ToString() + Environment.NewLine);
+            }
